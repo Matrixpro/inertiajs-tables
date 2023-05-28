@@ -115,15 +115,15 @@
       >
         <TableWrapper :class="{ 'mt-3': !hasOnlyData }">
           <slot name="table">
-            <table class="min-w-full divide-y divide-gray-200 bg-white">
-              <thead class="bg-gray-50">
+            <table class="min-w-full divide-y divide-gray-700 bg-gray-800">
+              <thead class="bg-gray-700">
                 <slot
                   name="head"
                   :show="show"
                   :sort-by="sortBy"
                   :header="header"
                 >
-                  <tr class="font-medium text-xs uppercase text-left tracking-wider text-gray-500 py-3 px-6">
+                  <tr class="font-medium text-xs uppercase text-left tracking-wider text-gray-300 py-3 px-6">
                     <HeaderCell
                       v-for="column in queryBuilderProps.columns"
                       :key="`table-${name}-header-${column.key}`"
@@ -133,27 +133,27 @@
                 </slot>
               </thead>
 
-              <tbody class="bg-white divide-y divide-gray-200">
-                <slot
+              <tbody class="bg-gray-800 divide-y divide-gray-700">
+              <slot
                   name="body"
                   :show="show"
-                >
-                  <tr
+              >
+                <tr
                     v-for="(item, key) in resourceData"
                     :key="`table-${name}-row-${key}`"
                     class=""
                     :class="{
-                      'bg-gray-50': striped && key % 2,
-                      'hover:bg-gray-100': striped,
-                      'hover:bg-gray-50': !striped
+                      'bg-gray-700': striped && key % 2,
+                      'hover:bg-gray-600': striped,
+                      'hover:bg-gray-700': !striped
                     }"
-                  >
-                    <td
+                >
+                  <td
                       v-for="column in queryBuilderProps.columns"
                       v-show="show(column.key)"
                       :key="`table-${name}-row-${key}-column-${column.key}`"
-                      class="text-sm py-4 px-6 text-gray-500 whitespace-nowrap"
-                    >
+                      class="text-sm py-4 px-6 text-gray-300 whitespace-nowrap"
+                  >
                       <slot
                         :name="`cell(${column.key})`"
                         :item="item"
